@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
+
 import axios from 'axios';
 import JavascriptTimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
+
+import NewPost from './NewPost';
+import Recommendations from './Recommendations';
+import NextPosts from './NextPosts';
 
 import S from './styles/Feeds';
-import en from 'javascript-time-ago/locale/en';
-import Recommendations from './Recommendations';
 
 const UserFeed = (props) => {
 
@@ -94,25 +98,10 @@ const UserFeed = (props) => {
             </S.Holder>)
     })
 
-    const nextPosts = () => {
-        axios.post('https://akademia108.pl/api/social-app/post/older-then', {
-            "date": `${posts[(posts.length) - 1].created_at}`
-        }, axiosConfig)
-            .then((req) => {
-                setPosts(posts.concat(req.data));
-            }
-
-            ).catch((error) => {
-                console.error(error);
-            })
-    }
-
     return (
         <S.Wraper>
             <S.Feed>
-                <S.Form>
-                    <S.Textarea placeholder="Add post"></S.Textarea>
-                </S.Form>
+                <NewPost />
                 {postList}
             </S.Feed>
 
@@ -120,7 +109,8 @@ const UserFeed = (props) => {
                 <Recommendations follow={following} axiosConfig={axiosConfig} />
             </S.SideBar>
 
-            <button onClick={nextPosts} style={{ position: 'fixed', bottom: 0, left: 0 }}>Get more posts</button>
+            <NextPosts posts={posts} setPosts={setPosts} axiosConfig={axiosConfig}/>
+
         </S.Wraper>
     )
 }

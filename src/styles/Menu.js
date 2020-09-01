@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+
 import {
     Link
 } from "react-router-dom";
 
 const Menu = {
     Nav: styled.nav`
-        flex: 1;
+        flex-basis: 25%;
         `,
 
     List: styled.ul`

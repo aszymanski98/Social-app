@@ -7,9 +7,9 @@ import {
   Redirect,
 } from "react-router-dom";
 
+import MainMenu from "./MainMenu";
 import Login from "./Login";
 import SignUp from "./SignUp";
-import MainMenu from "./MainMenu";
 import UserFeed from './UserFeed';
 import GuestFeed from './GuestFeed';
 

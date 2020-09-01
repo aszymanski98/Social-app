@@ -4,7 +4,7 @@ import Form from './Forms';
 
 const S = {
     Wraper: styled.div`
-        flex: 3;
+        flex-basis: 75%;
         display: flex;
         flex-direction: row;
         
@@ -13,7 +13,7 @@ const S = {
         flex: 2;
     `,
     SideBar: styled.div`
-        flex: 1;
+        flex-basis: 33%;
     `,
     Holder: styled.div`
         color: black;
@@ -68,24 +68,6 @@ const S = {
             color: #4a4a4a;
         }
         `,
-
-    Form: styled.form`
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-    `,
-
-    Textarea: styled.textarea`
-        width: 100%;
-        box-sizing: border-box;
-        height: 100px;
-        margin: 20px 0px;
-        background-color: #bdbdbd;
-        border: 1px solid #bdbdbd;
-        outline: 0;
-        padding: 20px;
-        color: #4a4a4a;
-    `,
 }
 
 export default S;

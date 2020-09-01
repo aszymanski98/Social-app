@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+
 import axios from 'axios';
 import JavascriptTimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
 
 import S from './styles/Recommendations';
-import en from 'javascript-time-ago/locale/en';
 
 const Recommendations = (props) => {
 
