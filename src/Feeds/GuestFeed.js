@@ -4,7 +4,7 @@ import axios from 'axios';
 import JavascriptTimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
 
-import S from './styles/Feeds';
+import S from '../styles/Feeds';
 
 const GuestFeed = (props) => {
 

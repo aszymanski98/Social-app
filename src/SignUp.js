@@ -36,7 +36,7 @@ const SignUp = () => {
         <Form.Holder>
             <Form.Heading>Sign Up</Form.Heading>
             <Form.Form_wrapper>
-                <form className="signup-form" onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onSubmit)}>
 
                     <Form.Input name="username" type="text" placeholder="User name"
                         ref={register({

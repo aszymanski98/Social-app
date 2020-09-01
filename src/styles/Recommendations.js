@@ -6,16 +6,19 @@ const S = {
     Wraper: styled.div`
         position: -webkit-sticky;
         position: sticky;
-        top: 20px;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
         `,
         
     Recomendations: styled.div`
         background-color: #bdbdbd;
         padding: 10px 20px;
-        margin: 140px 5px;
+        margin: auto 10px;
         `,
 
     RecomendationsHeading: styled.h2`
+        font-family: 'Kite One', sans-serif;
         color: #4a4a4a;
         font-size: 1.2em;
         font-weight: 700;

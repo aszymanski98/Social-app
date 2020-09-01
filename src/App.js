@@ -10,8 +10,8 @@ import {
 import MainMenu from "./MainMenu";
 import Login from "./Login";
 import SignUp from "./SignUp";
-import UserFeed from './UserFeed';
-import GuestFeed from './GuestFeed';
+import UserFeed from './Feeds/UserFeed';
+import GuestFeed from './Feeds/GuestFeed';
 
 import S from './styles/App';
 

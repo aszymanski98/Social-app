@@ -2,13 +2,29 @@ import React, { useState, useEffect } from 'react';
 
 import axios from 'axios';
 import JavascriptTimeAgo from 'javascript-time-ago';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import en from 'javascript-time-ago/locale/en';
+import styled from 'styled-components';
 
-import NewPost from './NewPost';
+import NewPost from './Components/NewPost';
 import Recommendations from './Recommendations';
-import NextPosts from './NextPosts';
+import NextPosts from './Components/NextPosts';
+import Likes from './Components/Likes';
 
-import S from './styles/Feeds';
+import DeletePost from './Components/DeletePost';
+import Follow from './Components/Follow';
+
+import S from '../styles/Feeds';
+
+const Icon = styled(FontAwesomeIcon)`
+        font-size: 15px;
+        position: absolute;
+        color: #4a4a4a;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    `;
 
 const UserFeed = (props) => {
 
@@ -43,40 +59,17 @@ const UserFeed = (props) => {
         getPosts();
     }, [])
 
-    const following = (event, option) => {
-        let leader_id = event.target.className;
-        leader_id = leader_id.replace(/[^0-9]/g, '');
-
-        let href = '';
-
-        switch (option) {
-            case 'follow':
-                href = 'https://akademia108.pl/api/social-app/follows/follow';
-                break;
-
-            case 'unfollow':
-                href = 'https://akademia108.pl/api/social-app/follows/disfollow';
-                break;
-
-            default:
-                break;
-        }
-
-        axios.post(href, {
-            "leader_id": { leader_id }
-        },
-            axiosConfig)
-            .then((req) => {
-                getPosts();
-            }
-
-            ).catch((error) => {
-                console.error(error);
-            })
-    }
-
     const postList = posts.map(key => {
         const date = new Date(key.created_at);
+
+        let liked = false;
+
+        key.likes.forEach(element => {
+            element.username === user.username
+                ? liked = true
+                : liked = liked
+        })
+
         return (
             <S.Holder key={key.id}>
                 <S.UserHolder>
@@ -88,28 +81,31 @@ const UserFeed = (props) => {
                     }
 
                     {user.username === key.user.username
-                        ? null
-                        : <S.FollowButton className={key.user.id} onClick={(event) => { following(event, 'unfollow') }}>Unfollow</S.FollowButton>
+                        ? <Icon icon={faTimes} id={key.id} onClick={(event) => { DeletePost(event, getPosts, axiosConfig) }} />
+                        : <S.FollowButton className={key.user.id} onClick={(event) => { Follow(event, 'unfollow', axiosConfig, getPosts) }}>Unfollow</S.FollowButton>
                     }
 
                     <S.Time date={date.getTime()} />
                 </S.UserHolder>
                 <S.Content>{key.content}</S.Content>
+                
+                <Likes id={key.id} liked={liked} axiosConfig={axiosConfig} amount={key.likes.length} getPosts={getPosts} />
+
             </S.Holder>)
     })
 
     return (
         <S.Wraper>
             <S.Feed>
-                <NewPost />
+                <NewPost axiosConfig={axiosConfig} getPosts={getPosts} />
                 {postList}
             </S.Feed>
 
             <S.SideBar>
-                <Recommendations follow={following} axiosConfig={axiosConfig} />
+                <Recommendations axiosConfig={axiosConfig} getPosts={getPosts} />
             </S.SideBar>
 
-            <NextPosts posts={posts} setPosts={setPosts} axiosConfig={axiosConfig}/>
+            <NextPosts posts={posts} setPosts={setPosts} axiosConfig={axiosConfig} />
 
         </S.Wraper>
     )

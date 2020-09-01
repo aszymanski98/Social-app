@@ -4,7 +4,8 @@ import axios from 'axios';
 import JavascriptTimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
 
-import S from './styles/Recommendations';
+import S from '../styles/Recommendations';
+import Follow from './Components/Follow';
 
 const Recommendations = (props) => {
 
@@ -26,14 +27,14 @@ const Recommendations = (props) => {
 
     useEffect(() => {
         getRecomendations();
-    },[props.follow])
+    }, [props.getPosts])
 
     const recomendationList = recommendations.map(key => {
         return (<S.RecomendationsRow key={key.id}>
             <S.Avatar src={key.avatar_url} alt="avatar"></S.Avatar>
             <S.Username>{key.username}</S.Username>
             <S.FollowButton className={key.id}
-                onClick={(event) => { props.follow(event, 'follow') }}>Follow</S.FollowButton>
+                onClick={(event) => { Follow(event, 'follow', props.axiosConfig, props.getPosts); getRecomendations()}}>Follow</S.FollowButton>
         </S.RecomendationsRow>)
     })
 

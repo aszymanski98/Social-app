@@ -1,13 +1,11 @@
 import styled from 'styled-components';
 import ReactTimeAgo from 'react-time-ago';
-import Form from './Forms';
 
 const S = {
     Wraper: styled.div`
         flex-basis: 75%;
         display: flex;
         flex-direction: row;
-        
     `,
     Feed: styled.div`
         flex: 2;
@@ -21,11 +19,12 @@ const S = {
         border: 0;
         margin-bottom: 5px;
         padding: 20px;
+        position: relative;
         `,
 
     UserHolder: styled.div`
-        color: black;
         display: flex;
+        align-items: center;
         `,
 
     Avatar: styled.img`
@@ -34,7 +33,6 @@ const S = {
         `,
 
     Username: styled.span`
-        line-height: 50px;
         margin-left: 10px;
         color: #b71c1c;
         font-weight: 500;
@@ -43,30 +41,25 @@ const S = {
     Content: styled.div`
         margin: 10px 0px 10px 0px;
         color: #4a4a4a;
+        font-size: 15px;
+        font-family: 'Kite One', sans-serif;
         `,
+        
     Time: styled(ReactTimeAgo)`
+        font-family: 'Kite One', sans-serif;
         color: #4a4a4a;
         font-size: 10px;
-        line-height: 50px;
         margin-left: 10px;
         `,
 
-    FollowButton: styled(Form.Button)`
+    FollowButton: styled.a`
+        font-family: 'Kite One', sans-serif;
+        cursor: pointer;
         color: #b71c1c;
-        height: 20px;
         color: #4a4a4a;
-        border: 1px solid #4a4a4a;
-        line-height: 0px;
-        margin: 15px 0px 0px 10px;
-        padding: 10px 5px;
-        font-size: 10px;
+        margin: 0px 0px 0px 10px;
+        font-size: 15px;
         background: transparent;
-        border-radius: 0px;
-
-        &:hover {
-            border: 1px solid #4a4a4a;
-            color: #4a4a4a;
-        }
         `,
 }
 
