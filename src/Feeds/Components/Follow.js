@@ -1,36 +1,43 @@
 import axios from 'axios';
 
-const Follow = (event, option, axiosConfig, getPosts) => {
-    
+const Follow = (event, option, axiosConfig, getPosts, posts, setPosts) => {
+
     let leader_id = event.target.className;
-    leader_id = leader_id.replace(/[^0-9]/g, ''); 
+    leader_id = leader_id.replace(/[^0-9]/g, '');
 
-    let href = '';
+    if (option === "follow") {
+        axios.post('https://akademia108.pl/api/social-app/follows/follow', {
+            "leader_id": { leader_id }
+        },
+            axiosConfig)
+            .then((req) => {
+                getPosts();
+            }
 
-    switch (option) {
-        case 'follow':
-            href = 'https://akademia108.pl/api/social-app/follows/follow';
-            break;
+            ).catch((error) => {
+                console.error(error);
+            })
+    } else {
+        axios.post('https://akademia108.pl/api/social-app/follows/disfollow', {
+            "leader_id": { leader_id }
+        },
+            axiosConfig)
+            .then((req) => {
+                let array = Array.from(posts);
 
-        case 'unfollow':
-            href = 'https://akademia108.pl/api/social-app/follows/disfollow';
-            break;
+                for (let i = array.length; i--;) {
+                    if (array[i].user.id === Number(leader_id)) {
+                        array.splice(i, 1);
+                    }
+                }
 
-        default:
-            break;
+                setPosts(array);
+            }
+
+            ).catch((error) => {
+                console.error(error);
+            })
     }
-
-    axios.post(href, {
-        "leader_id": { leader_id }
-    },
-        axiosConfig)
-        .then((req) => {
-            getPosts();
-        }
-
-        ).catch((error) => {
-            console.error(error);
-        })
 }
 
 export default Follow;

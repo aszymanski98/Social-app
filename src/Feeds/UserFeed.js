@@ -58,16 +58,15 @@ const UserFeed = (props) => {
     useEffect(() => {
         getPosts();
     }, [])
-
+    
     const postList = posts.map(key => {
+        
         const date = new Date(key.created_at);
 
         let liked = false;
 
         key.likes.forEach(element => {
-            element.username === user.username
-                ? liked = true
-                : liked = liked
+            if (element.id === user.id) liked = true
         })
 
         return (
@@ -75,21 +74,21 @@ const UserFeed = (props) => {
                 <S.UserHolder>
                     <S.Avatar src={key.user.avatar_url} alt="avatar"></S.Avatar>
 
-                    {user.username === key.user.username
+                    {user.id === key.user.id
                         ? <S.Username>You</S.Username>
                         : <S.Username>{key.user.username}</S.Username>
                     }
 
-                    {user.username === key.user.username
-                        ? <Icon icon={faTimes} id={key.id} onClick={(event) => { DeletePost(event, getPosts, axiosConfig) }} />
-                        : <S.FollowButton className={key.user.id} onClick={(event) => { Follow(event, 'unfollow', axiosConfig, getPosts) }}>Unfollow</S.FollowButton>
+                    {user.id === key.user.id
+                        ? <Icon icon={faTimes} id={key.id} onClick={(event) => { DeletePost(event, posts, setPosts, axiosConfig) }} />
+                        : <S.FollowButton className={key.user.id} onClick={(event) => { Follow(event, 'unfollow', axiosConfig, getPosts, posts, setPosts) }}>Unfollow</S.FollowButton>
                     }
 
                     <S.Time date={date.getTime()} />
                 </S.UserHolder>
                 <S.Content>{key.content}</S.Content>
-                
-                <Likes id={key.id} liked={liked} axiosConfig={axiosConfig} amount={key.likes.length} getPosts={getPosts} />
+
+                <Likes id={key.id} liked={liked} user={user} axiosConfig={axiosConfig} amount={key.likes.length} posts={posts} setPosts={setPosts} />
 
             </S.Holder>)
     })

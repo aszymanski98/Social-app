@@ -36,12 +36,13 @@ class App extends Component {
   }
 
   timerPopup = () => {
-    this.setState({ loaded: false });
+    if (!this.state.userLoggedIn) {
+      this.setState({ loaded: false });
 
-    this.timerID = setTimeout(() => {
-      this.setState({ loaded: true });
-    }, 10000)
-
+      this.timerID = setTimeout(() => {
+        this.setState({ loaded: true });
+      }, 10000)
+    }
   }
 
   componentDidMount() {
@@ -57,7 +58,7 @@ class App extends Component {
     return (
       <Router>
         <S.App>
-          <MainMenu updateUser={this.updateUser} />
+          {this.state.userLoggedIn ? <MainMenu updateUser={this.updateUser} logged={true} /> : <MainMenu updateUser={this.updateUser} logged={false} />}
 
           <Switch>
             <Route exact path="/">

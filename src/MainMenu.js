@@ -4,7 +4,7 @@ import Menu from "./styles/Menu";
 
 const MainMenu = (props) => {
 
-    if (localStorage.user === 'null') {
+    if (!props.logged) {
         return (
             <Menu.Nav>
                 <Menu.List>

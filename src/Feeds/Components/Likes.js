@@ -11,43 +11,51 @@ const Likes = (props) => {
 
     const liking = (event, option) => {
 
-        let href = '';
+        let indexInPosts = -1;
+        let indexToDelete = -1;
 
-        switch (option) {
-            case 'like':
-                href = 'https://akademia108.pl/api/social-app/post/like';
-                break;
+        if (option === 'like') {
+            axios.post('https://akademia108.pl/api/social-app/post/like', {
+                "post_id": `${event.currentTarget.id}`
+            },
+                props.axiosConfig)
+                .then((req) => {
+                    props.posts.forEach((element, index) => {if (element.id === Number(props.id)) indexInPosts = index});
+                    let array = Array.from(props.posts);
+                    array[indexInPosts].likes.push(props.user);
+                    props.setPosts(array);
+                }
 
-            case 'dislike':
-                href = 'https://akademia108.pl/api/social-app/post/dislike';
-                break;
+                ).catch((error) => {
+                    console.error(error);
+                })
+        } else {
+            axios.post('https://akademia108.pl/api/social-app/post/dislike', {
+                "post_id": `${event.currentTarget.id}`
+            },
+                props.axiosConfig)
+                .then((req) => {
+                    let array = Array.from(props.posts);
 
-            default:
-                break;
+                    array.forEach((element, index) => {if (element.id === Number(props.id)) indexInPosts = index});
+                    array[indexInPosts].likes.forEach((element, index) => {if (element.id === Number(props.id)) indexToDelete = index});
+                    
+                    array[indexInPosts].likes.splice(indexToDelete, 1);
+                    props.setPosts(array);
+                }
+
+                ).catch((error) => {
+                    console.error(error);
+                })
         }
-
-        axios.post(href, {
-            "post_id": `${event.currentTarget.id}`
-        },
-
-            props.axiosConfig)
-            .then((req) => {
-                console.log(req.data);
-                props.getPosts();
-            }
-
-            ).catch((error) => {
-                console.error(error);
-            })
     }
-
 
     return (
         <div>
             {props.liked
-                ? <S.Icon id={props.id} icon={fasHeart} onClick={(event) => { liking(event, 'dislike') }} />
+                ? <S.RedIcon id={props.id} icon={fasHeart} onClick={(event) => { liking(event) }} />
                 : <S.Icon id={props.id} icon={farHeart} onClick={(event) => { liking(event, 'like') }} />}
-            <S.Amount>{props.amount}</S.Amount>
+            {props.amount>=1 ? <S.Amount>{props.amount}</S.Amount> : <S.Amount />}
         </div>
     )
 }
