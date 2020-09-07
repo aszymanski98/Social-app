@@ -38,8 +38,16 @@ const Form = {
 
     Errors: styled.span`
         font-size: 12px;
-        color: red;
+        color: #b71c1c;
         margin-bottom: 10px;
+    `,
+
+    Signed: styled.span`
+        font-size: 18px;
+        color: green;
+        display: block;
+        text-align: center;
+        margin: 15px 0px 15px 0px;
     `,
 
     Button_holder: styled.div`
@@ -57,11 +65,11 @@ const Form = {
         text-transform: uppercase;
         font-weight: bold;
         cursor: pointer;
-        transition: .5s;
-
+        
     &:hover{
-      color: #f05545;
-      border: 2px solid #f05545;
+        transition: .5s;
+        color: #f05545;
+        border: 2px solid #f05545;
     }`,
 }
 

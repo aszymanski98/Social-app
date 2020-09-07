@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 
@@ -7,17 +7,25 @@ import Form from './styles/Forms';
 const SignUp = () => {
 
     const { register, handleSubmit, errors, getValues } = useForm();
+    const [userUsed, setUser] = useState(false);
+    const [emailUsed, setEmail] = useState(false);
+    const [signed, setSigned] = useState(false);
+
+    const headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    }
 
     const onSubmit = data => {
+
+        setUser(false);
+        setEmail(false);
+        setSigned(false);
+
         let newUser = {
-            username: data.username.trim(),
+            username: data.username,
             email: data.email,
             password: data.password,
-        }
-
-        const headers = {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
         }
 
         axios.post(
@@ -25,8 +33,12 @@ const SignUp = () => {
             JSON.stringify(newUser),
             { 'headers': headers })
             .then((req) => {
-
-                console.log(req.data);
+                if (req.data.signedup === false) {
+                    if (req.data.message.username) { setUser(true); }
+                    if (req.data.message.email) { setEmail(true); }
+                } else {
+                    setSigned(true);
+                }
             }).catch((error) => {
                 console.error(error);
             })
@@ -42,25 +54,25 @@ const SignUp = () => {
                         ref={register({
                             required: true,
                             minLength: 4,
-                            validate: value => {
-                                let regex = /\s/;
-                                if (regex.test(value)) {
-                                    return false;
-                                } else return true;
-                            }
+                            pattern: {
+                                value: /^[^\s]*$/,
+                            },
+
                         })} />
                     {errors.username && errors.username.type === "required" && <Form.Errors> &#9888; This field is required</Form.Errors>}
                     {errors.username && errors.username.type === "minLength" && <Form.Errors> &#9888; User name is too short</Form.Errors>}
-                    {errors.username && errors.username.type === "validate" && <Form.Errors> &#9888; Do not use white spaces</Form.Errors>}
+                    {errors.username && errors.username.type === "pattern" && <Form.Errors> &#9888; Do not use white spaces</Form.Errors>}
+                    {userUsed ? <Form.Errors> &#9888; User name has already been taken</Form.Errors> : null}
 
                     <Form.Input name="email" type="text" placeholder="E-mail adress" ref={register({
                         required: true,
                         pattern: {
                             value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        }
+                        },
                     })} />
                     {errors.email && errors.email.type === "required" && <Form.Errors> &#9888; This field is required</Form.Errors>}
-                    {errors.email && errors.email.type === "pattern" && <Form.Errors> &#9888; Adress is invalid</Form.Errors>}
+                    {errors.email && errors.email.type === "pattern" && <Form.Errors> &#9888; Email adress is invalid</Form.Errors>}
+                    {emailUsed ? <Form.Errors> &#9888; Email adress has already been taken</Form.Errors> : null}
 
                     <Form.Input name="password" type="password" placeholder="Password" ref={register({
                         required: true,
@@ -87,10 +99,12 @@ const SignUp = () => {
                     })} />
                     {errors.confirmPassword && errors.confirmPassword.type === "validate" && <Form.Errors> &#9888;     Password is not the same</Form.Errors>}
                     {errors.confirmPassword && errors.confirmPassword.type === "required" && <Form.Errors> &#9888; This field is required</Form.Errors>}
+                    {signed ? <Form.Signed>You signed up successfully!</Form.Signed> : null}
 
                     <Form.Button_holder>
-                        <Form.Button className="signup-btn" type="submit">Sign up</Form.Button>
+                        {signed ? <Form.Button type="submit" style={{ "marginTop": "0px" }}>Sign up</Form.Button> : <Form.Button type="submit">Sign up</Form.Button>}
                     </Form.Button_holder>
+                    
                 </form>
             </Form.Form_wrapper>
         </Form.Holder>

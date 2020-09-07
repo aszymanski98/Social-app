@@ -6,6 +6,8 @@ import axios from 'axios';
 import S from '../../styles/NewPost';
 import Form from '../../styles/Forms';
 
+import updateFeed from '../Utils/updateFeed';
+
 const NewPost = (props) => {
 
     const { register, handleSubmit, errors} = useForm();
@@ -15,7 +17,9 @@ const NewPost = (props) => {
         {"content": `${data.post}`},
             props.axiosConfig)
             .then((req) => {
-                props.getPosts();
+
+                updateFeed('one', props.posts[0].created_at, props.posts, props.setPosts, props.axiosConfig);
+
                 e.target.reset();
             }
 

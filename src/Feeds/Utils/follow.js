@@ -1,17 +1,18 @@
 import axios from 'axios';
+import updateFeed from './updateFeed';
 
-const Follow = (event, option, axiosConfig, getPosts, posts, setPosts) => {
+const follow = (event, option, axiosConfig, posts, setPosts) => {
 
     let leader_id = event.target.className;
     leader_id = leader_id.replace(/[^0-9]/g, '');
-
+   
     if (option === "follow") {
         axios.post('https://akademia108.pl/api/social-app/follows/follow', {
             "leader_id": { leader_id }
         },
             axiosConfig)
             .then((req) => {
-                getPosts();
+                updateFeed('all', posts[posts.length-1].created_at, posts, setPosts, axiosConfig);
             }
 
             ).catch((error) => {
@@ -23,6 +24,7 @@ const Follow = (event, option, axiosConfig, getPosts, posts, setPosts) => {
         },
             axiosConfig)
             .then((req) => {
+
                 let array = Array.from(posts);
 
                 for (let i = array.length; i--;) {
@@ -40,4 +42,4 @@ const Follow = (event, option, axiosConfig, getPosts, posts, setPosts) => {
     }
 }
 
-export default Follow;
+export default follow;

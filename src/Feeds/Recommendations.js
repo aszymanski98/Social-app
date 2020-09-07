@@ -5,7 +5,7 @@ import JavascriptTimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
 
 import S from '../styles/Recommendations';
-import Follow from './Components/Follow';
+import follow from './Utils/follow';
 
 const Recommendations = (props) => {
 
@@ -13,7 +13,7 @@ const Recommendations = (props) => {
 
     const [recommendations, setRecomendations] = useState([]);
 
-    const getRecomendations = () => {
+    useEffect(() => {
         axios.post('https://akademia108.pl/api/social-app/follows/recommendations', {},
             props.axiosConfig)
             .then((req) => {
@@ -23,18 +23,14 @@ const Recommendations = (props) => {
             ).catch((error) => {
                 console.error(error);
             })
-    }
-
-    useEffect(() => {
-        getRecomendations();
-    }, [props.getPosts])
+    }, [props.posts])
 
     const recomendationList = recommendations.map(key => {
         return (<S.RecomendationsRow key={key.id}>
             <S.Avatar src={key.avatar_url} alt="avatar"></S.Avatar>
             <S.Username>{key.username}</S.Username>
             <S.FollowButton className={key.id}
-                onClick={(event) => { Follow(event, 'follow', props.axiosConfig, props.getPosts); getRecomendations()}}>Follow</S.FollowButton>
+                onClick={(event) => { follow(event, 'follow', props.axiosConfig, props.posts, props.setPosts)}}>Follow</S.FollowButton>
         </S.RecomendationsRow>)
     })
 

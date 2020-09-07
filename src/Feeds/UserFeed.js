@@ -12,8 +12,8 @@ import Recommendations from './Recommendations';
 import NextPosts from './Components/NextPosts';
 import Likes from './Components/Likes';
 
-import DeletePost from './Components/DeletePost';
-import Follow from './Components/Follow';
+import deletePost from './Utils/deletePost';
+import follow from './Utils/follow';
 
 import S from '../styles/Feeds';
 
@@ -43,7 +43,7 @@ const UserFeed = (props) => {
         }
     };
 
-    const getPosts = () => {
+    useEffect(() => {
         axios.post('https://akademia108.pl/api/social-app/post/latest', {},
             axiosConfig)
             .then((req) => {
@@ -53,21 +53,14 @@ const UserFeed = (props) => {
             ).catch((error) => {
                 console.error(error);
             })
-    }
-
-    useEffect(() => {
-        getPosts();
     }, [])
-    
+
     const postList = posts.map(key => {
-        
+
         const date = new Date(key.created_at);
 
         let liked = false;
-
-        key.likes.forEach(element => {
-            if (element.id === user.id) liked = true
-        })
+        liked = key.likes.some(element => element.id === user.id);
 
         return (
             <S.Holder key={key.id}>
@@ -80,8 +73,8 @@ const UserFeed = (props) => {
                     }
 
                     {user.id === key.user.id
-                        ? <Icon icon={faTimes} id={key.id} onClick={(event) => { DeletePost(event, posts, setPosts, axiosConfig) }} />
-                        : <S.FollowButton className={key.user.id} onClick={(event) => { Follow(event, 'unfollow', axiosConfig, getPosts, posts, setPosts) }}>Unfollow</S.FollowButton>
+                        ? <Icon icon={faTimes} id={key.id} onClick={(event) => { deletePost(event, posts, setPosts, axiosConfig) }} />
+                        : <S.FollowButton className={key.user.id} onClick={(event) => { follow(event, 'unfollow', axiosConfig, posts, setPosts) }}>Unfollow</S.FollowButton>
                     }
 
                     <S.Time date={date.getTime()} />
@@ -96,15 +89,14 @@ const UserFeed = (props) => {
     return (
         <S.Wraper>
             <S.Feed>
-                <NewPost axiosConfig={axiosConfig} getPosts={getPosts} />
+                <NewPost axiosConfig={axiosConfig} posts={posts} setPosts={setPosts} />
                 {postList}
+                <NextPosts axiosConfig={axiosConfig} posts={posts} setPosts={setPosts} />
             </S.Feed>
 
             <S.SideBar>
-                <Recommendations axiosConfig={axiosConfig} getPosts={getPosts} />
+                <Recommendations axiosConfig={axiosConfig} posts={posts} setPosts={setPosts} />
             </S.SideBar>
-
-            <NextPosts posts={posts} setPosts={setPosts} axiosConfig={axiosConfig} />
 
         </S.Wraper>
     )

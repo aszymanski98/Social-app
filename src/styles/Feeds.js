@@ -8,10 +8,10 @@ const S = {
         flex-direction: row;
     `,
     Feed: styled.div`
-        flex: 2;
+        flex:2;
     `,
     SideBar: styled.div`
-        flex-basis: 33%;
+        flex: 1;
     `,
     Holder: styled.div`
         color: black;

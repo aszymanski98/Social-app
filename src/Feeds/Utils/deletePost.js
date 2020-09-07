@@ -1,12 +1,14 @@
 import axios from 'axios';
 
-const DeletePost = (event, posts, setPosts, axiosConfig) => {
+const deletePost = (event, posts, setPosts, axiosConfig) => {
 
     const id = event.currentTarget.id;
     let indexToRemove = -1;
 
     const find = (element, index) => {
-        if (element.id === Number(id)) indexToRemove = index
+        if (element.id === Number(id)) {
+            indexToRemove = index;
+        }
     }
 
     axios.post('https://akademia108.pl/api/social-app/post/delete', {
@@ -27,4 +29,4 @@ const DeletePost = (event, posts, setPosts, axiosConfig) => {
 
 }
 
-export default DeletePost;
+export default deletePost;

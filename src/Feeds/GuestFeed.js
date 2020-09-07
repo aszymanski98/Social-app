@@ -58,7 +58,7 @@ const GuestFeed = (props) => {
 
     return (
         <S.Wraper>
-            <S.Feed style={{'marginTop': '140px'}}>
+            <S.Feed style={{'marginTop': '5px'}}>
                 {postList}
             </S.Feed>
 
