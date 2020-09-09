@@ -7,15 +7,15 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import en from 'javascript-time-ago/locale/en';
 import styled from 'styled-components';
 
-import NewPost from './Components/NewPost';
-import Recommendations from './Recommendations';
-import NextPosts from './Components/NextPosts';
-import Likes from './Components/Likes';
+import NewPost from '../Components/NewPost';
+import Recommendations from '../Components/Recommendations';
+import NextPosts from '../Components/NextPosts';
+import Likes from '../Components/Likes';
 
-import deletePost from './Utils/deletePost';
-import follow from './Utils/follow';
+import deletePost from '../Utils/deletePost';
+import follow from '../Utils/follow';
 
-import S from '../styles/Feeds';
+import S from '../Styles/Feeds';
 
 const Icon = styled(FontAwesomeIcon)`
         font-size: 15px;
@@ -84,19 +84,23 @@ const UserFeed = (props) => {
                 <Likes id={key.id} liked={liked} user={user} axiosConfig={axiosConfig} amount={key.likes.length} posts={posts} setPosts={setPosts} />
 
             </S.Holder>)
-    })
+    });
 
     return (
         <S.Wraper>
+
+            <S.LeftBar />
+
+            <S.RightBar>
+                <Recommendations axiosConfig={axiosConfig} posts={posts} setPosts={setPosts} />
+            </S.RightBar>
+            
             <S.Feed>
                 <NewPost axiosConfig={axiosConfig} posts={posts} setPosts={setPosts} />
                 {postList}
                 <NextPosts axiosConfig={axiosConfig} posts={posts} setPosts={setPosts} />
             </S.Feed>
 
-            <S.SideBar>
-                <Recommendations axiosConfig={axiosConfig} posts={posts} setPosts={setPosts} />
-            </S.SideBar>
 
         </S.Wraper>
     )

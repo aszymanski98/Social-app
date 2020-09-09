@@ -1,10 +1,12 @@
-import styled from 'styled-components';
+import styled from '../../node_modules/styled-components';
 
 const S = {
     App: styled.div`
-        display: flex;
-        flex-direction: row;
         box-sizing: border-box;
+        @media (min-width: 850px) {
+            display: flex;
+            flex-direction: row;
+        } 
         `,
 
 }

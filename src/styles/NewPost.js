@@ -1,21 +1,30 @@
 import styled from 'styled-components';
-import Form from './Forms';
 
 const S = {
 
-    AddButton: styled(Form.Button)`
-        color: #4a4a4a;
-        border: 1px solid #4a4a4a;
-        padding: 10px 10px;
+    AddButton: styled.button`
         font-size: 15px;
-        background: transparent;
-        border-radius: 0px;
+        background-color: transparent;
+        width: 125px;
+        height: 40px;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-weight: 400;
         margin: 0px 0px 20px auto;
-
+        color: #66FCF1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        border: 1px solid #66FCF1;
+        
         &:hover {
-            border: 1px solid #4a4a4a;
-            color: #4a4a4a;
+            -webkit-transition: all .15s ease-in-out;
+            transition: all .15s ease-in-out;
+            box-shadow: 0 0 10px 0 #66FCF1 inset, 0 0 10px 0px #66FCF1;
+            border: 1px solid #66FCF1;
         }
+
         `,
 
     Form: styled.form`
@@ -31,8 +40,8 @@ const S = {
         font-family: 'Kite One', sans-serif;
         font-size: 15px;
         margin: 20px 0px 10px 0px;
-        background-color: #bdbdbd;
-        border: 1px solid #bdbdbd;
+        background-color: #1F2833;
+        border: 1px solid #1F2833;
         outline: 0;
         padding: 20px;
         color: #4a4a4a;

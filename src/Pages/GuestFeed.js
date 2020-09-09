@@ -4,7 +4,10 @@ import axios from 'axios';
 import JavascriptTimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
 
-import S from '../styles/Feeds';
+import S from '../Styles/Feeds';
+
+import NextPosts from '../Components/NextPosts';
+import Likes from '../Components/Likes';
 
 const GuestFeed = (props) => {
 
@@ -40,31 +43,19 @@ const GuestFeed = (props) => {
                     <S.Time date={date.getTime()} />
                 </S.UserHolder>
                 <S.Content>{key.content}</S.Content>
+                <Likes id={key.id} axiosConfig={axiosConfig} guest={true} amount={key.likes.length} posts={posts} setPosts={setPosts} />
             </S.Holder>)
     })
 
-    const nextPosts = () => {
-        axios.post('https://akademia108.pl/api/social-app/post/older-then', {
-            "date": `${posts[(posts.length) - 1].created_at}`
-        }, axiosConfig)
-            .then((req) => {
-                setPosts(posts.concat(req.data));
-            }
-
-            ).catch((error) => {
-                console.error(error);
-            })
-    }
-
     return (
         <S.Wraper>
-            <S.Feed style={{'marginTop': '5px'}}>
+            <S.LeftBar />
+            <S.Feed style={{"margin-top": "20px"}}>
                 {postList}
+                <NextPosts axiosConfig={axiosConfig} guest={true} posts={posts} setPosts={setPosts} />
             </S.Feed>
 
-            <S.SideBar />
-
-            <button onClick={nextPosts} style={{ position: 'fixed', bottom: 0, left: 0 }}>Get more posts</button>
+            <S.RightBar />
         </S.Wraper>
     )
 }

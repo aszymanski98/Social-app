@@ -1,21 +1,54 @@
-import styled from 'styled-components';
-import ReactTimeAgo from 'react-time-ago';
+import styled from '../../node_modules/styled-components';
+import ReactTimeAgo from '../../node_modules/react-time-ago';
 
 const S = {
     Wraper: styled.div`
-        flex-basis: 75%;
-        display: flex;
-        flex-direction: row;
+        
+        box-sizing: border-box;
+        display: block;
+        padding: 0px 5px;
+
+        @media (min-width: 850px) {
+            padding: 0px;
+            display: flex;
+            flex-direction: column;
+            width: 75%;
+            margin: 0px auto;
+        }
+
+        @media (min-width: 1400px) {
+            flex-direction: row;
+            margin-right: 0;
+            width: 100%;
+        } 
     `,
     Feed: styled.div`
-        flex:2;
+        box-sizing: border-box;
+        order: 2;
+        position: relative;
+        @media (min-width: 1400px) {
+            width: 75%;
+            order: 0;
+        } 
     `,
-    SideBar: styled.div`
-        flex: 1;
+
+    RightBar: styled.div`
+        margin-top: 20px;
+        width: 100%;
+        order: 1;
+        @media (min-width: 1400px) {
+            width: 25%;
+            position: static;
+        }
     `,
+
+    LeftBar: styled.div`
+        width: 25%;
+    `,
+
     Holder: styled.div`
         color: black;
-        background-color: #bdbdbd;
+        background-color: #1F2833;
         border: 0;
         margin-bottom: 5px;
         padding: 20px;
@@ -34,20 +67,20 @@ const S = {
 
     Username: styled.span`
         margin-left: 10px;
-        color: #b71c1c;
+        color: #66FCF1;
         font-weight: 500;
         `,
 
     Content: styled.div`
         margin: 10px 0px 10px 0px;
-        color: #4a4a4a;
+        color: #C5C6C7;
         font-size: 15px;
         font-family: 'Kite One', sans-serif;
         `,
         
     Time: styled(ReactTimeAgo)`
         font-family: 'Kite One', sans-serif;
-        color: #4a4a4a;
+        color: #C5C6C7;
         font-size: 10px;
         margin-left: 10px;
         `,
@@ -55,8 +88,7 @@ const S = {
     FollowButton: styled.a`
         font-family: 'Kite One', sans-serif;
         cursor: pointer;
-        color: #b71c1c;
-        color: #4a4a4a;
+        color: #C5C6C7;
         margin: 0px 0px 0px 10px;
         font-size: 15px;
         background: transparent;

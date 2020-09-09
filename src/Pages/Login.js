@@ -5,13 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import styled from 'styled-components';
 
-import Form from './styles/Forms';
+import Form from '../Styles/Forms';
 
 const Icon = styled(FontAwesomeIcon)`
         font-size: 30px;
         position: absolute;
         display: ${props => props.display};
-        color: #b71c1c;
+        color: #66FCF1;
         right: 10px;
         top: 10px;
         cursor: pointer;
@@ -48,7 +48,7 @@ const Login = (props) => {
     let color = 'transparent';
 
     if (props.popup) {
-        color = '#8d8d8d';
+        color = '#0B0C10';
     }
 
     return (

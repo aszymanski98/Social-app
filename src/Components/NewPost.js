@@ -3,8 +3,8 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 
-import S from '../../styles/NewPost';
-import Form from '../../styles/Forms';
+import S from '../Styles/NewPost';
+import Form from '../Styles/Forms';
 
 import updateFeed from '../Utils/updateFeed';
 

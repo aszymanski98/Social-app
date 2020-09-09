@@ -7,13 +7,14 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import MainMenu from "./MainMenu";
-import Login from "./Login";
-import SignUp from "./SignUp";
-import UserFeed from './Feeds/UserFeed';
-import GuestFeed from './Feeds/GuestFeed';
+import MainMenu from "./Components/MainMenu";
 
-import S from './styles/App';
+import Login from "./Pages/Login";
+import SignUp from "./Pages/SignUp";
+import UserFeed from './Pages//UserFeed';
+import GuestFeed from './Pages//GuestFeed';
+
+import S from './Styles/App';
 
 class App extends Component {
 
