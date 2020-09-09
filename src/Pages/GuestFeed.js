@@ -4,10 +4,12 @@ import axios from 'axios';
 import JavascriptTimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
 
-import S from '../Styles/Feeds';
-
 import NextPosts from '../Components/NextPosts';
 import Likes from '../Components/Likes';
+
+import updateFeed from '../Utils/updateFeed';
+
+import S from '../Styles/Feeds';
 
 const GuestFeed = (props) => {
 
@@ -33,6 +35,15 @@ const GuestFeed = (props) => {
             })
     }, [])
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (posts[0]) {
+                updateFeed('not-all', posts[0].created_at, posts, setPosts, axiosConfig);
+            }
+        }, 15000);
+        return () => clearInterval(interval);
+    });
+
     const postList = posts.map(key => {
         const date = new Date(key.created_at)
         return (
@@ -50,12 +61,12 @@ const GuestFeed = (props) => {
     return (
         <S.Wraper>
             <S.LeftBar />
-            <S.Feed style={{"margin-top": "20px"}}>
+            <S.Feed style={{"marginTop": "20px"}}>
                 {postList}
                 <NextPosts axiosConfig={axiosConfig} guest={true} posts={posts} setPosts={setPosts} />
             </S.Feed>
 
-            <S.RightBar />
+            <S.RightBar style={{"marginTop": "0px"}}/>
         </S.Wraper>
     )
 }

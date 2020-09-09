@@ -8,17 +8,16 @@ const MainMenu = (props) => {
     const [lastScrollHeight, setlastScrollHeight] = useState(0);
 
     window.onscroll = function () {
-        
-        let scroll_top = window.pageYOffset;
-        console.log(scroll_top);
 
-         if (scroll_top < lastScrollHeight) {
+        let scroll_top = window.pageYOffset;
+
+        if (scroll_top < lastScrollHeight) {
             setScrollClass('scrolled-up');
         }
         else {
             setScrollClass('scrolled-down');
         }
-        setlastScrollHeight(scroll_top); 
+        setlastScrollHeight(scroll_top);
     }
 
 
@@ -26,9 +25,10 @@ const MainMenu = (props) => {
         return (
             <Menu.Nav className={scrollClass}>
                 <Menu.List>
+                    <Menu.Logo>Social-app</Menu.Logo>
                     <Menu.Element><Menu.Link to="/">Feed</Menu.Link></Menu.Element>
-                    <Menu.ElementLast><Menu.Link to="/login">Log in</Menu.Link>
-                        <Menu.LastLink to="/signup">Sign up</Menu.LastLink></Menu.ElementLast>
+                    <Menu.Element><Menu.Link to="/login">Log in</Menu.Link></Menu.Element>
+                    <Menu.Element><Menu.Link to="/signup">Sign up</Menu.Link></Menu.Element>
                 </Menu.List>
             </Menu.Nav>
         );
@@ -37,12 +37,13 @@ const MainMenu = (props) => {
         return (
             <Menu.Nav className={scrollClass}>
                 <Menu.List>
+                    <Menu.Logo>Social-app</Menu.Logo>
                     <Menu.Element><Menu.Link to="/">Feed</Menu.Link></Menu.Element>
-                    <Menu.ElementLast><Menu.Link to="" onClick={() => {
+                    <Menu.Element><Menu.Link to="" onClick={() => {
                         localStorage.user = null;
                         props.updateUser(false);
 
-                    }}>Log out</Menu.Link></Menu.ElementLast>
+                    }}>Log out</Menu.Link></Menu.Element>
                 </Menu.List>
             </Menu.Nav>
         );

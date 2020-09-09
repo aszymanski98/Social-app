@@ -14,6 +14,7 @@ import Likes from '../Components/Likes';
 
 import deletePost from '../Utils/deletePost';
 import follow from '../Utils/follow';
+import updateFeed from '../Utils/updateFeed';
 
 import S from '../Styles/Feeds';
 
@@ -55,6 +56,15 @@ const UserFeed = (props) => {
             })
     }, [])
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (posts[0]) {
+                updateFeed('not-all', posts[0].created_at, posts, setPosts, axiosConfig);
+            }
+        }, 15000);
+        return () => clearInterval(interval);
+    });
+
     const postList = posts.map(key => {
 
         const date = new Date(key.created_at);
@@ -94,7 +104,7 @@ const UserFeed = (props) => {
             <S.RightBar>
                 <Recommendations axiosConfig={axiosConfig} posts={posts} setPosts={setPosts} />
             </S.RightBar>
-            
+
             <S.Feed>
                 <NewPost axiosConfig={axiosConfig} posts={posts} setPosts={setPosts} />
                 {postList}

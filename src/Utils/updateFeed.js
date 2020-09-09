@@ -5,14 +5,15 @@ const updateFeed = (option, date, posts, setPosts, axiosConfig) => {
         "date": `${date}`
     },
         axiosConfig)
-
         .then((req) => {
-            if (option === 'all') {
-                const newArray = req.data;
-                setPosts(newArray);
-            } else {
-                const newPosts = req.data;
-                setPosts(newPosts.concat(posts))
+            if (req.data.length > 0) {
+                if (option === 'all') {
+                    const newArray = req.data;
+                    setPosts(newArray);
+                } else {
+                    const newPosts = req.data;
+                    setPosts(newPosts.concat(posts))
+                }
             }
         }
 

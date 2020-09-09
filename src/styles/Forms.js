@@ -77,6 +77,7 @@ const Form = {
         align-items: center;
         background-color: transparent;
         border: 1px solid #66FCF1;
+        outline: 0;
         
         &:hover {
             -webkit-transition: all .15s ease-in-out;
