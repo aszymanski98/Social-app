@@ -5,12 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const S = {
 	Heading: styled.h2`
 		font-size: 40px;
-		margin: 20px 0px 0px 0px;
+		margin: 20px 0px 10px 0px;
 		color: #66fcf1;
 	`,
 
 	Holder: styled.div`
-		width: 80%;
+    width: 80%;
 		height: auto;
 		position: fixed;
 		top: 50%;
@@ -36,16 +36,20 @@ const S = {
 		text-align: left;
 	`,
 
-	Input_wrapper: styled.div`
-		position: relative;
+	Input_wrapper: styled.fieldset`
+    position: relative;
+    border: 0px;
+    padding: 0;
+    
 	`,
 
-	Label: styled.label`
+  Label: styled.div`
 		color: white;
-		position: absolute;
-		top: 30px;
-		left: 10px;
-		color: #c5c6c7;
+    position: absolute;
+		top: 27.5px;
+		left: 5px;
+    color: #c5c6c7;
+    padding: 0px 5px;
 		line-height: 35px;
 		pointer-events: none;
 	`,
@@ -112,7 +116,17 @@ const S = {
 		right: 10px;
 		top: 10px;
 		cursor: pointer;
-	`,
+  `,
+  
+  EyeIcon: styled(FontAwesomeIcon)`
+    position: absolute;
+    font-size: 20px;
+    cursor: pointer;
+    top: 35px;
+    right: 10px;
+    color: #c5c6c7;
+    z-index: 100;
+  `,
 };
 
 export default S;

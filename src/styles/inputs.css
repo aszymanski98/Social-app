@@ -1,19 +1,30 @@
 input {
+	height: 50px;
 	box-sizing: border-box;
-	width: 100%;
+  width: 100%;
+  position: relative;
 	outline: 0;
-	height: 35px;
 	color: #c5c6c7;
-	background-color: #1f2833;
-	border: 1px solid #1f2833;
-	padding: 10px 10px;
-	margin-top: 30px;
+	background-color: transparent;
+	border: 0.1px solid #c5c6c7;
+	padding: 20px 10px;
+	margin-top: 20px;
+}
+input:focus,
+input:not(:placeholder-shown),
+input:-webkit-autofill {
+	-webkit-transition: all 0.15s ease-in-out;
+	transition: all 0.15s ease-in-out;
+	border: 1px solid #66fcf1;
 }
 
-input:focus + label,
-input:not(:placeholder-shown) + label,
-input:-webkit-autofill + label {
-	transition: top 0.1s ease-in;
-	top: 0px;
-	color: #999;
+input:focus + div,
+input:not(:placeholder-shown) + div,
+input:-webkit-autofill + div {
+	-webkit-transition: all 0.15s ease-in-out;
+	transition: top 0.15s ease-in;
+	top: 2.5px;
+	background-color: #0b0c10;
+	color: #c5c6c7;
+	border: transparent;
 }
