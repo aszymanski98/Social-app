@@ -1,114 +1,152 @@
 import React, { useState } from 'react';
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
-import Form from '../Styles/Forms';
+import S from '../Styles/Forms';
+import '../Styles/inputs.css';
 
 const SignUp = () => {
+	const { register, handleSubmit, errors, getValues } = useForm();
+	const [userUsed, setUser] = useState(false);
+	const [emailUsed, setEmail] = useState(false);
+	const [signed, setSigned] = useState(false);
 
-    const { register, handleSubmit, errors, getValues } = useForm();
-    const [userUsed, setUser] = useState(false);
-    const [emailUsed, setEmail] = useState(false);
-    const [signed, setSigned] = useState(false);
+	const headers = {
+		'Content-Type': 'application/json',
+		Accept: 'application/json',
+	};
 
-    const headers = {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-    }
+	const onSubmit = (data) => {
+		setUser(false);
+		setEmail(false);
+		setSigned(false);
 
-    const onSubmit = data => {
+		let newUser = {
+			username: data.username,
+			email: data.email,
+			password: data.password,
+		};
 
-        setUser(false);
-        setEmail(false);
-        setSigned(false);
+		axios
+			.post('http://akademia108.pl/api/social-app/user/signup', JSON.stringify(newUser), { headers: headers })
+			.then((req) => {
+				if (req.data.signedup === false) {
+					if (req.data.message.username) {
+						setUser(true);
+					}
+					if (req.data.message.email) {
+						setEmail(true);
+					}
+				} else {
+					setSigned(true);
+				}
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	};
 
-        let newUser = {
-            username: data.username,
-            email: data.email,
-            password: data.password,
-        }
+	return (
+		<S.Holder>
+			<S.Heading>Sign Up</S.Heading>
+			<S.Form_wrapper>
+				<form onSubmit={handleSubmit(onSubmit)}>
+					<S.Input_wrapper>
+						<input
+							name='username'
+							type='text'
+							placeholder=' '
+							ref={register({
+								required: true,
+								minLength: 4,
+								pattern: {
+									value: /^[^\s]*$/,
+								},
+							})}
+						/>
+						<S.Label htmlFor='username'>Username</S.Label>
+						{errors.username && errors.username.type === 'required' && <S.Errors> &#9888; This field is required</S.Errors>}
+						{errors.username && errors.username.type === 'minLength' && <S.Errors> &#9888; User name is too short</S.Errors>}
+						{errors.username && errors.username.type === 'pattern' && <S.Errors> &#9888; Do not use white spaces</S.Errors>}
+						{userUsed ? <S.Errors> &#9888; User name has already been taken</S.Errors> : null}
+					</S.Input_wrapper>
 
-        axios.post(
-            'http://akademia108.pl/api/social-app/user/signup',
-            JSON.stringify(newUser),
-            { 'headers': headers })
-            .then((req) => {
-                if (req.data.signedup === false) {
-                    if (req.data.message.username) { setUser(true); }
-                    if (req.data.message.email) { setEmail(true); }
-                } else {
-                    setSigned(true);
-                }
-            }).catch((error) => {
-                console.error(error);
-            })
-    }
+					<S.Input_wrapper>
+						<input
+							name='email'
+							type='text'
+							placeholder=' '
+							ref={register({
+								required: true,
+								pattern: {
+									value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+								},
+							})}
+						/>
+						<S.Label htmlFor='email'>E-mail adress</S.Label>
+						{errors.email && errors.email.type === 'required' && <S.Errors> &#9888; This field is required</S.Errors>}
+						{errors.email && errors.email.type === 'pattern' && <S.Errors> &#9888; Email adress is invalid</S.Errors>}
+						{emailUsed ? <S.Errors> &#9888; Email adress has already been taken</S.Errors> : null}
+					</S.Input_wrapper>
 
-    return (
-        <Form.Holder>
-            <Form.Heading>Sign Up</Form.Heading>
-            <Form.Form_wrapper>
-                <form onSubmit={handleSubmit(onSubmit)}>
+					<S.Input_wrapper>
+						<input
+							name='password'
+							type='password'
+							placeholder=' '
+							ref={register({
+								required: true,
+								minLength: 6,
+								pattern: {
+									value: /^[0-zA-Z$&+,:;=?@#|'<>.^*()%!]*$/,
+								},
+								validate: (value) => {
+									let regex = /\d/;
+									if ((value.includes('$') || value.includes('!') || value.includes('#') || value.includes('@') || value.includes('%')) && regex.test(value)) {
+										return true;
+									} else {
+										return false;
+									}
+								},
+							})}
+						/>
+						<S.Label htmlFor='password'>Password</S.Label>
+						{errors.password && errors.password.type === 'required' && <S.Errors> &#9888; This field is required</S.Errors>}
+						{errors.password && errors.password.type === 'minLength' && <S.Errors> &#9888; Password is too short</S.Errors>}
+						{errors.password && errors.password.type === 'validate' && <S.Errors> &#9888; Password must contain one of charts: ! # @ $ %</S.Errors>}
+						{errors.password && errors.password.type === 'pattern' && <S.Errors> &#9888; Do not use white spaces</S.Errors>}
+					</S.Input_wrapper>
 
-                    <Form.Input name="username" type="text" placeholder="User name"
-                        ref={register({
-                            required: true,
-                            minLength: 4,
-                            pattern: {
-                                value: /^[^\s]*$/,
-                            },
+					<S.Input_wrapper>
+						<input
+							name='confirmPassword'
+							type='password'
+							placeholder=' '
+							ref={register({
+								required: true,
+								validate: (value) => value === getValues('password'),
+							})}
+						/>
+						<S.Label htmlFor='confirmPassword'>Confirm password</S.Label>
+						{errors.confirmPassword && errors.confirmPassword.type === 'validate' && <S.Errors> &#9888; Password is not the same</S.Errors>}
+						{errors.confirmPassword && errors.confirmPassword.type === 'required' && <S.Errors> &#9888; This field is required</S.Errors>}
+					</S.Input_wrapper>
 
-                        })} />
-                    {errors.username && errors.username.type === "required" && <Form.Errors> &#9888; This field is required</Form.Errors>}
-                    {errors.username && errors.username.type === "minLength" && <Form.Errors> &#9888; User name is too short</Form.Errors>}
-                    {errors.username && errors.username.type === "pattern" && <Form.Errors> &#9888; Do not use white spaces</Form.Errors>}
-                    {userUsed ? <Form.Errors> &#9888; User name has already been taken</Form.Errors> : null}
+					{signed ? <S.Signed>You signed up successfully!</S.Signed> : null}
 
-                    <Form.Input name="email" type="text" placeholder="E-mail adress" ref={register({
-                        required: true,
-                        pattern: {
-                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        },
-                    })} />
-                    {errors.email && errors.email.type === "required" && <Form.Errors> &#9888; This field is required</Form.Errors>}
-                    {errors.email && errors.email.type === "pattern" && <Form.Errors> &#9888; Email adress is invalid</Form.Errors>}
-                    {emailUsed ? <Form.Errors> &#9888; Email adress has already been taken</Form.Errors> : null}
-
-                    <Form.Input name="password" type="password" placeholder="Password" ref={register({
-                        required: true,
-                        minLength: 6,
-                        pattern: {
-                            value: /^[0-zA-Z$&+,:;=?@#|'<>.^*()%!]*$/,
-                        },
-                        validate: value => {
-                            let regex = /\d/;
-                            if ((value.includes('$') || value.includes('!') || value.includes('#') || value.includes('@') || value.includes('%')) && regex.test(value)) {
-                                return true;
-                            } else { return false; }
-                        },
-
-                    })} />
-                    {errors.password && errors.password.type === "required" && <Form.Errors> &#9888; This field is required</Form.Errors>}
-                    {errors.password && errors.password.type === "minLength" && <Form.Errors> &#9888; Password is too short</Form.Errors>}
-                    {errors.password && errors.password.type === "validate" && <Form.Errors> &#9888; Password must contain a number and one of special charts</Form.Errors>}
-                    {errors.password && errors.password.type === "pattern" && <Form.Errors> &#9888; Do not use white spaces</Form.Errors>}
-
-                    <Form.Input name="confirmPassword" type="password" placeholder="Confirm password" ref={register({
-                        required: true,
-                        validate: value => value === getValues('password'),
-                    })} />
-                    {errors.confirmPassword && errors.confirmPassword.type === "validate" && <Form.Errors> &#9888;     Password is not the same</Form.Errors>}
-                    {errors.confirmPassword && errors.confirmPassword.type === "required" && <Form.Errors> &#9888; This field is required</Form.Errors>}
-                    {signed ? <Form.Signed>You signed up successfully!</Form.Signed> : null}
-
-                    <Form.Button_holder>
-                        {signed ? <Form.Button type="submit" style={{ "marginTop": "0px" }}>Sign up</Form.Button> : <Form.Button type="submit">Sign up</Form.Button>}
-                    </Form.Button_holder>
-                    
-                </form>
-            </Form.Form_wrapper>
-        </Form.Holder>
-    );
-}
+					<S.Button_holder>
+						{signed ? (
+							<S.Button type='submit' style={{ marginTop: '0px' }}>
+								Sign up
+							</S.Button>
+						) : (
+							<S.Button type='submit'>Sign up</S.Button>
+						)}
+					</S.Button_holder>
+				</form>
+			</S.Form_wrapper>
+		</S.Holder>
+	);
+};
 
 export default SignUp;
