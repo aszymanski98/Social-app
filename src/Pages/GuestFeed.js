@@ -61,7 +61,7 @@ const GuestFeed = (props) => {
 	return (
 		<S.Wraper>
 			<S.LeftBar />
-			<S.Feed style={{ marginTop: '20px' }}>
+			<S.Feed style={{ marginTop: '5px' }}>
 				{postList}
 				<NextPosts axiosConfig={axiosConfig} guest={true} posts={posts} setPosts={setPosts} />
 			</S.Feed>

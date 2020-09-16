@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
-import MainMenu from './Components/MainMenu';
-import Login from './Components/Login';
+import MainMenu from "./Components/MainMenu";
+import Login from "./Components/Login";
 
-import LoginPage from './Pages/LoginPage';
-import SignUp from './Pages/SignUp';
-import UserFeed from './Pages/UserFeed';
-import GuestFeed from './Pages/GuestFeed';
-import AllFollows from './Pages/AllFollows';
+import LoginPage from "./Pages/LoginPage";
+import SignUp from "./Pages/SignUp";
+import UserFeed from "./Pages/UserFeed";
+import GuestFeed from "./Pages/GuestFeed";
+import AllFollows from "./Pages/AllFollows";
 
-import S from './Styles/App';
+import S from "./Styles/App";
 
 class App extends Component {
 	constructor() {
 		super();
-		this.currentUser = JSON.parse(localStorage.getItem('user'));
+		this.currentUser = JSON.parse(localStorage.getItem("user"));
 		this.state = {
 			userLoggedIn: this.currentUser ? true : false,
 			loaded: false,
@@ -56,22 +56,21 @@ class App extends Component {
 			<Router>
 				<S.App>
 					{this.state.userLoggedIn ? <MainMenu updateUser={this.updateUser} logged={true} /> : <MainMenu updateUser={this.updateUser} hide={this.hidePopup} logged={false} />}
-
 					<Switch>
-						<Route exact path='/'>
+
+						<Route exact path="/">
 							{this.state.userLoggedIn ? <UserFeed /> : <GuestFeed />}
-							{this.state.loaded ? this.state.userLoggedIn ? <Redirect to='/' /> : <Login popup={true} iconDisplay='block' hide={this.hidePopup} updateUser={this.updateUser} /> : null}
+							{this.state.loaded ? this.state.userLoggedIn ? <Redirect to="/" /> : <Login popup={true} iconDisplay="block" hide={this.hidePopup} updateUser={this.updateUser} /> : null}
 						</Route>
 
-						<Route path='/login'>{this.state.userLoggedIn ? <Redirect to='/' /> : <LoginPage updateUser={this.updateUser} />}</Route>
+						<Route path="/login">{this.state.userLoggedIn ? <Redirect to="/" /> : <LoginPage updateUser={this.updateUser} />}</Route>
 
-						<Route path='/signup'>
-							<SignUp />
-						</Route>
+						<Route path="/signup" component={SignUp} />
 
-						<Route path='/allFollows'>
-							<AllFollows />
-						</Route>
+						<Route path="/allFollows" component={AllFollows} />
+
+						<Redirect to="/" />
+            
 					</Switch>
 				</S.App>
 			</Router>

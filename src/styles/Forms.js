@@ -44,7 +44,6 @@ const S = {
 	`,
 
   Label: styled.div`
-		color: white;
     position: absolute;
 		top: 27.5px;
 		left: 5px;
