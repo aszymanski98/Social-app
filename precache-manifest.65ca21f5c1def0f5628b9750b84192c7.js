@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "93cb84c444c40df25e0201e5bfa964ca",
+    "revision": "6b460417751a7891d99977c08080742b",
     "url": "/Social-app-ReactJS/index.html"
   },
   {
-    "revision": "701619a9e189cd8a7b54",
+    "revision": "cc259a8e7c08efda64b2",
     "url": "/Social-app-ReactJS/static/css/main.47c7cb79.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Social-app-ReactJS/static/js/2.1daf0a2e.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "701619a9e189cd8a7b54",
-    "url": "/Social-app-ReactJS/static/js/main.ba960828.chunk.js"
+    "revision": "cc259a8e7c08efda64b2",
+    "url": "/Social-app-ReactJS/static/js/main.9ae2d88a.chunk.js"
   },
   {
     "revision": "e114f49f7920fd9c9220",
