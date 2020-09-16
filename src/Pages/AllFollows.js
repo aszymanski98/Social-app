@@ -61,7 +61,7 @@ const AllFollows = (props) => {
 	const recomendationList = follows.map((key) => {
 		return (
 			<S.Row key={key.id}>
-				<S.Avatar src={key.avatar_url} alt="avatar"></S.Avatar>
+				<S.Avatar src={key.avatar_url} alt='avatar'></S.Avatar>
 				<S.Username>{key.username}</S.Username>
 				<S.FollowButton
 					className={key.id}
@@ -84,7 +84,7 @@ const AllFollows = (props) => {
 			<S.Wraper>{recomendationList}</S.Wraper>
 		)
 	) : (
-		<S.Img src={loader} alt="loading..." />
+		<S.Img src={loader} alt='loading...' />
 	);
 };
 

@@ -63,7 +63,7 @@ const UserFeed = (props) => {
 		return (
 			<S.Holder key={key.id}>
 				<S.UserHolder>
-					<S.Avatar src={key.user.avatar_url} alt="avatar"></S.Avatar>
+					<S.Avatar src={key.user.avatar_url} alt='avatar'></S.Avatar>
 
 					{user.id === key.user.id ? <S.Username>You</S.Username> : <S.Username>{key.user.username}</S.Username>}
 

@@ -24,7 +24,7 @@ const Recommendations = (props) => {
 	const recomendationList = recommendations.map((key) => {
 		return (
 			<S.RecomendationsRow key={key.id}>
-				<S.Avatar src={key.avatar_url} alt="avatar"></S.Avatar>
+				<S.Avatar src={key.avatar_url} alt='avatar'></S.Avatar>
 				<S.Username>{key.username}</S.Username>
 				<S.FollowButton
 					className={key.id}

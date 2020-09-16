@@ -48,7 +48,7 @@ const GuestFeed = (props) => {
 		return (
 			<S.Holder key={key.id}>
 				<S.UserHolder>
-					<S.Avatar src={key.user.avatar_url} alt="avatar"></S.Avatar>
+					<S.Avatar src={key.user.avatar_url} alt='avatar'></S.Avatar>
 					<S.Username>{key.user.username}</S.Username>
 					<S.Time date={date.getTime()} />
 				</S.UserHolder>

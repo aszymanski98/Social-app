@@ -19,7 +19,7 @@ const S = {
 		width: 60%;
 		display: flex;
 		justify-content: space-between;
-		margin-bottom: 10px;
+		margin-bottom: 5px;
 		background-color: #1f2833;
 		padding: 10px 20px;
 

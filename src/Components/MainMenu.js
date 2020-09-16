@@ -21,7 +21,18 @@ const MainMenu = (props) => {
 		return (
 			<Menu.Nav className={scrollClass}>
 				<Menu.List>
-					<Menu.Logo>Social-app</Menu.Logo>
+          
+					<Menu.Element>
+						<Menu.Logo
+							to='/'
+							onClick={() => {
+								props.hide();
+								props.updateUser();
+							}}
+						>
+							Social-app
+						</Menu.Logo>
+					</Menu.Element>
 
 					<Menu.Element>
 						<Menu.Link

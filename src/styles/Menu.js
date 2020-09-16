@@ -40,7 +40,7 @@ const Menu = {
 		padding: 0;
 	`,
 
-	Logo: styled.li`
+	Logo: styled(Link)`
 		font-size: 20px;
 		font-weight: bold;
 		color: #0b0c10;

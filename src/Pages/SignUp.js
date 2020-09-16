@@ -67,9 +67,9 @@ const SignUp = () => {
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<S.Input_wrapper>
 						<input
-							name="username"
-							type="text"
-							placeholder=" "
+							name='username'
+							type='text'
+							placeholder=' '
 							ref={register({
 								required: true,
 								minLength: 4,
@@ -78,7 +78,7 @@ const SignUp = () => {
 								},
 							})}
 						/>
-						<S.Label htmlFor="username">Username</S.Label>
+						<S.Label htmlFor='username'>Username</S.Label>
 						{errors.username && errors.username.type === 'required' && <S.Errors> &#9888; This field is required</S.Errors>}
 						{errors.username && errors.username.type === 'minLength' && <S.Errors> &#9888; User name is too short</S.Errors>}
 						{errors.username && errors.username.type === 'pattern' && <S.Errors> &#9888; Do not use white spaces</S.Errors>}
@@ -87,9 +87,9 @@ const SignUp = () => {
 
 					<S.Input_wrapper>
 						<input
-							name="email"
-							type="text"
-							placeholder=" "
+							name='email'
+							type='text'
+							placeholder=' '
 							ref={register({
 								required: true,
 								pattern: {
@@ -97,7 +97,7 @@ const SignUp = () => {
 								},
 							})}
 						/>
-						<S.Label htmlFor="email">E-mail adress</S.Label>
+						<S.Label htmlFor='email'>E-mail adress</S.Label>
 						{errors.email && errors.email.type === 'required' && <S.Errors> &#9888; This field is required</S.Errors>}
 						{errors.email && errors.email.type === 'pattern' && <S.Errors> &#9888; Email adress is invalid</S.Errors>}
 						{emailUsed ? <S.Errors> &#9888; Email adress has already been taken</S.Errors> : null}
@@ -121,9 +121,9 @@ const SignUp = () => {
 						)}
 
 						<input
-							name="password"
+							name='password'
 							type={passwordShown ? 'text' : 'password'}
-							placeholder=" "
+							placeholder=' '
 							ref={register({
 								required: true,
 								minLength: 6,
@@ -140,7 +140,7 @@ const SignUp = () => {
 								},
 							})}
 						/>
-						<S.Label htmlFor="password">Password</S.Label>
+						<S.Label htmlFor='password'>Password</S.Label>
 						{errors.password && errors.password.type === 'required' && <S.Errors> &#9888; This field is required</S.Errors>}
 						{errors.password && errors.password.type === 'minLength' && <S.Errors> &#9888; Password is too short</S.Errors>}
 						{errors.password && errors.password.type === 'validate' && <S.Errors> &#9888; Password must contain one of charts: ! # @ $ %</S.Errors>}
@@ -165,15 +165,15 @@ const SignUp = () => {
 						)}
 
 						<input
-							name="confirmPassword"
+							name='confirmPassword'
 							type={confirmPasswordShown ? 'text' : 'password'}
-							placeholder=" "
+							placeholder=' '
 							ref={register({
 								required: true,
 								validate: (value) => value === getValues('password'),
 							})}
 						/>
-						<S.Label htmlFor="confirmPassword">Confirm password</S.Label>
+						<S.Label htmlFor='confirmPassword'>Confirm password</S.Label>
 						{errors.confirmPassword && errors.confirmPassword.type === 'validate' && <S.Errors> &#9888; Password is not the same</S.Errors>}
 						{errors.confirmPassword && errors.confirmPassword.type === 'required' && <S.Errors> &#9888; This field is required</S.Errors>}
 					</S.Input_wrapper>
@@ -182,11 +182,11 @@ const SignUp = () => {
 
 					<S.Button_holder>
 						{signed ? (
-							<S.Button type="submit" style={{ marginTop: '0px' }}>
+							<S.Button type='submit' style={{ marginTop: '0px' }}>
 								Sign up
 							</S.Button>
 						) : (
-							<S.Button type="submit">Sign up</S.Button>
+							<S.Button type='submit'>Sign up</S.Button>
 						)}
 					</S.Button_holder>
 				</form>
