@@ -1,16 +1,13 @@
 # Social-app
+This project is simple social app modelled on Twitter. It is based on Axios Rest API requests.
 
 ## Table of contents
-* [General info](#general-info)
 * [Demo](#demo)
 * [Features](#features)
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Login data](#login-data)
 * [Sources](#sources)
-
-## General info
-This project is simple social app modelled on Twitter. It is based on Axios requests from Rest API.
 
 ## Demo
 Working demo of project: https://aszymanski98.github.io/Social-app-ReactJS/
