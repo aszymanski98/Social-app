@@ -28,6 +28,7 @@ const UserFeed = (props) => {
 
 	const [posts, setPosts] = useState([]);
 	const [delEvent, setEvent] = useState({});
+	const [updateRecomendations, makeUpdate] = useState(false);
 
 	const axiosConfig = {
 		headers: {
@@ -84,6 +85,7 @@ const UserFeed = (props) => {
 							className={key.user.id}
 							onClick={(event) => {
 								follow(event, 'unfollow', axiosConfig, posts, setPosts);
+								updateRecomendations ? makeUpdate(false) : makeUpdate(true);
 							}}
 						>
 							Unfollow
@@ -101,14 +103,11 @@ const UserFeed = (props) => {
 
 	return (
 		<S.Wraper>
-			<S.LeftBar />
 			{delEvent > 0 ? <DeletePopup id={delEvent} setEvent={setEvent} posts={posts} setPosts={setPosts} axiosConfig={axiosConfig} /> : null}
-			<S.RightBar>
-				<Recommendations axiosConfig={axiosConfig} posts={posts} setPosts={setPosts} />
-			</S.RightBar>
 
 			<S.Feed>
 				<NewPost axiosConfig={axiosConfig} posts={posts} setPosts={setPosts} />
+				<Recommendations axiosConfig={axiosConfig} makeUpdate={makeUpdate} updateRecomendations={updateRecomendations} posts={posts} setPosts={setPosts} />
 				{postList}
 				<NextPosts axiosConfig={axiosConfig} posts={posts} setPosts={setPosts} />
 			</S.Feed>

@@ -11,42 +11,18 @@ const S = {
 
 		@media (min-width: 850px) {
 			padding: 0px;
-			display: flex;
-			flex-direction: column;
 			width: 75%;
 			margin: 0px auto;
 		}
 
 		@media (min-width: 1400px) {
-			flex-direction: row;
-			margin-right: 0;
-			width: 100%;
+			width: 60%;
 		}
 	`,
 	Feed: styled.div`
 		box-sizing: border-box;
-		order: 2;
-		position: relative;
-		@media (min-width: 1400px) {
-			width: 75%;
-			order: 0;
-		}
-	`,
-
-	RightBar: styled.div`
-		margin-top: 10px;
-		width: 100%;
-		order: 1;
-		@media (min-width: 1400px) {
-			width: 25%;
-			position: static;
-		}
-	`,
-
-	LeftBar: styled.div`
-		width: 25%;
-	`,
-
+  `,
+  
 	Holder: styled.div`
 		color: black;
 		background-color: #1f2833;

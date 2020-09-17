@@ -11,16 +11,18 @@ const Recommendations = (props) => {
 	const [recommendations, setRecomendations] = useState([]);
 
 	useEffect(() => {
-		axios
-			.post('https://akademia108.pl/api/social-app/follows/recommendations', {}, props.axiosConfig)
-			.then((req) => {
-				setRecomendations(req.data);
-			})
-			.catch((error) => {
-				console.error(error);
-			});
+		setTimeout(() => {
+			axios
+				.post('https://akademia108.pl/api/social-app/follows/recommendations', {}, props.axiosConfig)
+				.then((req) => {
+          setRecomendations(req.data);
+				})
+				.catch((error) => {
+					console.error(error);
+				});
+		}, 425);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [props.posts]);
+	}, [props.updateRecomendations]);
 
 	const recomendationList = recommendations.map((key) => {
 		return (
@@ -30,7 +32,8 @@ const Recommendations = (props) => {
 				<S.FollowButton
 					className={key.id}
 					onClick={(event) => {
-						follow(event, 'follow', props.axiosConfig, props.posts, props.setPosts);
+            follow(event, 'follow', props.axiosConfig, props.posts, props.setPosts);
+            props.updateRecomendations ? props.makeUpdate(false) : props.makeUpdate(true);
 					}}
 				>
 					Follow

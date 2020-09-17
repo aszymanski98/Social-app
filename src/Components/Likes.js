@@ -14,51 +14,53 @@ const Likes = (props) => {
 		let indexInPosts = -1;
 		let indexToDelete = -1;
 
-		if (option === 'like') {
-			axios
-				.post(
-					'https://akademia108.pl/api/social-app/post/like',
-					{
-						post_id: `${event.currentTarget.id}`,
-					},
-					props.axiosConfig
-				)
-				.then((req) => {
-					props.posts.forEach((element, index) => {
-						if (element.id === Number(props.id)) indexInPosts = index;
+		if (event.currentTarget.id) {
+			if (option === 'like') {
+				axios
+					.post(
+						'https://akademia108.pl/api/social-app/post/like',
+						{
+							post_id: `${event.currentTarget.id}`,
+						},
+						props.axiosConfig
+					)
+					.then((req) => {
+						props.posts.forEach((element, index) => {
+							if (element.id === Number(props.id)) indexInPosts = index;
+						});
+						let array = Array.from(props.posts);
+						array[indexInPosts].likes.push(props.user);
+						props.setPosts(array);
+					})
+					.catch((error) => {
+						console.error(error);
 					});
-					let array = Array.from(props.posts);
-					array[indexInPosts].likes.push(props.user);
-					props.setPosts(array);
-				})
-				.catch((error) => {
-					console.error(error);
-				});
-		} else {
-			axios
-				.post(
-					'https://akademia108.pl/api/social-app/post/dislike',
-					{
-						post_id: `${event.currentTarget.id}`,
-					},
-					props.axiosConfig
-				)
-				.then((req) => {
-					let array = Array.from(props.posts);
+			} else {
+				axios
+					.post(
+						'https://akademia108.pl/api/social-app/post/dislike',
+						{
+							post_id: `${event.currentTarget.id}`,
+						},
+						props.axiosConfig
+					)
+					.then((req) => {
+						let array = Array.from(props.posts);
 
-					array.forEach((element, index) => {
-						if (element.id === Number(props.id)) indexInPosts = index;
-					});
-					array[indexInPosts].likes.forEach((element, index) => {
-						if (element.id === Number(props.id)) indexToDelete = index;
-					});
+						array.forEach((element, index) => {
+							if (element.id === Number(props.id)) indexInPosts = index;
+						});
+						array[indexInPosts].likes.forEach((element, index) => {
+							if (element.id === Number(props.id)) indexToDelete = index;
+						});
 
-					array[indexInPosts].likes.splice(indexToDelete, 1);
-					props.setPosts(array);
-				})
-				.catch((error) => {
-					console.error(error);
-				});
+						array[indexInPosts].likes.splice(indexToDelete, 1);
+						props.setPosts(array);
+					})
+					.catch((error) => {
+						console.error(error);
+					});
+			}
 		}
 	};
 

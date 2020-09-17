@@ -34,6 +34,7 @@ const S = {
 
 	Textarea: styled.textarea`
 		width: 100%;
+    
 		box-sizing: border-box;
 		height: 100px;
 		font-family: 'Kite One', sans-serif;

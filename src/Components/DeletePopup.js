@@ -11,8 +11,8 @@ import yes from '../assets/yes.svg';
 import no from '../assets/no.svg';
 
 const DeletePopup = (props) => {
-  const [invisible, hide] = useState(false);
-  
+	const [invisible, hide] = useState(false);
+
 	return (
 		<>
 			{invisible ? null : (

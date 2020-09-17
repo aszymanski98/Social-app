@@ -2,28 +2,16 @@ import styled from '../../node_modules/styled-components';
 
 const S = {
 	Wraper: styled.div`
-		@media (min-width: 1400px) {
-			position: sticky;
-			top: 50%;
-			-ms-transform: translateY(-50%);
-			transform: translateY(-50%);
-		}
 	`,
 
 	Recomendations: styled.div`
 		background-color: #1f2833;
 		padding: 10px;
-		margin: 0;
+		margin: 0px 0px 10px 0px;
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: space-around;
-
-		@media (min-width: 1400px) {
-			padding-bottom: 35px;
-			flex-direction: column;
-			margin: auto 5px;
-		}
 	`,
 
 	RecomendationsHeading: styled.h2`
@@ -42,13 +30,6 @@ const S = {
 		justify-content: center;
 		flex-wrap: wrap;
 		margin-bottom: 20px;
-
-		@media (min-width: 1400px) {
-			justify-content: space-between;
-			padding: 0 20px;
-			margin-top: 5px;
-			margin-bottom: 0px;
-		}
 	`,
 
 	Avatar: styled.img`
@@ -67,10 +48,6 @@ const S = {
 			flex-basis: auto;
 			margin-left: 10px;
 		}
-
-		@media (min-width: 1400px) {
-			margin-right: auto;
-		}
 	`,
 
 	FollowButton: styled.a`
@@ -82,12 +59,6 @@ const S = {
 		margin-top: 15px;
 		font-size: 15px;
 		background: transparent;
-
-		@media (min-width: 1400px) {
-			flex-basis: auto;
-			margin: 0;
-			line-height: 50px;
-		}
 	`,
 };
 
