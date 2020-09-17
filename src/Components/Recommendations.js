@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-
 import axios from 'axios';
 
+/* Styles */
 import S from '../Styles/Recommendations';
 
+/* Utils */
 import follow from '../Utils/follow';
 
 const Recommendations = (props) => {

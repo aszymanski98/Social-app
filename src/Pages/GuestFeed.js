@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-
 import axios from 'axios';
 import JavascriptTimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
 
+/* Components */
 import NextPosts from '../Components/NextPosts';
 import Likes from '../Components/Likes';
 
+/* Utils */
 import updateFeed from '../Utils/updateFeed';
 
+/* Styles */
 import S from '../Styles/Feeds';
 
 const GuestFeed = (props) => {
@@ -61,7 +63,7 @@ const GuestFeed = (props) => {
 	return (
 		<S.Wraper>
 			<S.LeftBar />
-			<S.Feed style={{ marginTop: '5px' }}>
+			<S.Feed style={{ marginTop: '10px' }}>
 				{postList}
 				<NextPosts axiosConfig={axiosConfig} guest={true} posts={posts} setPosts={setPosts} />
 			</S.Feed>

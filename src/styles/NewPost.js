@@ -9,7 +9,7 @@ const S = {
 		cursor: pointer;
 		text-transform: uppercase;
 		font-weight: 400;
-		margin: 0px 0px 20px auto;
+		margin: 0px 0px 10px auto;
 		color: #66fcf1;
 		display: flex;
 		justify-content: center;
@@ -38,7 +38,7 @@ const S = {
 		height: 100px;
 		font-family: 'Kite One', sans-serif;
 		font-size: 15px;
-		margin: 20px 0px 10px 0px;
+		margin: 10px 0px 10px 0px;
 		background-color: #1f2833;
 		border: 1px solid #1f2833;
 		outline: 0;

@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react';
-
 import axios from 'axios';
 import JavascriptTimeAgo from 'javascript-time-ago';
 
+/* Icons */
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import en from 'javascript-time-ago/locale/en';
 
+/* Components */
 import NewPost from '../Components/NewPost';
 import Recommendations from '../Components/Recommendations';
 import NextPosts from '../Components/NextPosts';
 import Likes from '../Components/Likes';
+import DeletePopup from '../Components/DeletePopup';
 
-import deletePost from '../Utils/deletePost';
+/* Utils */
 import follow from '../Utils/follow';
 import updateFeed from '../Utils/updateFeed';
 
+/* Styles */
 import S from '../Styles/Feeds';
 
 const UserFeed = (props) => {
@@ -24,6 +27,7 @@ const UserFeed = (props) => {
 	let jwtToken = user.jwt_token;
 
 	const [posts, setPosts] = useState([]);
+	const [delEvent, setEvent] = useState({});
 
 	const axiosConfig = {
 		headers: {
@@ -72,7 +76,7 @@ const UserFeed = (props) => {
 							icon={faTimes}
 							id={key.id}
 							onClick={(event) => {
-								deletePost(event, posts, setPosts, axiosConfig);
+								setEvent(event.currentTarget.id);
 							}}
 						/>
 					) : (
@@ -98,7 +102,7 @@ const UserFeed = (props) => {
 	return (
 		<S.Wraper>
 			<S.LeftBar />
-
+			{delEvent > 0 ? <DeletePopup id={delEvent} setEvent={setEvent} posts={posts} setPosts={setPosts} axiosConfig={axiosConfig} /> : null}
 			<S.RightBar>
 				<Recommendations axiosConfig={axiosConfig} posts={posts} setPosts={setPosts} />
 			</S.RightBar>

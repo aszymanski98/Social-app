@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-const deletePost = (event, posts, setPosts, axiosConfig) => {
-	const id = event.currentTarget.id;
+const deletePost = (id, posts, setPosts, axiosConfig) => {
 	let indexToRemove = -1;
 
 	const find = (element, index) => {

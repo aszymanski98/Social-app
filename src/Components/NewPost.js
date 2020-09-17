@@ -1,11 +1,12 @@
 import React from 'react';
-
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
+/* Styles */
 import S from '../Styles/NewPost';
 import Form from '../Styles/Forms';
 
+/* Utils */
 import updateFeed from '../Utils/updateFeed';
 
 const NewPost = (props) => {

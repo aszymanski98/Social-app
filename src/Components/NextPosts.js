@@ -1,9 +1,11 @@
 import React, { useRef, useState } from 'react';
-
 import axios from 'axios';
 
-import loader from '../assets/Loader.gif';
+/* Styles */
 import S from '../Styles/NextPosts';
+
+/* Assets */
+import loader from '../assets/Loader.gif';
 
 const NextPosts = (props) => {
 	const endOfPageRef = useRef();

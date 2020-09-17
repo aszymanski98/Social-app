@@ -1,4 +1,5 @@
 import styled from '../../node_modules/styled-components';
+
 import ReactTimeAgo from '../../node_modules/react-time-ago';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -33,7 +34,7 @@ const S = {
 	`,
 
 	RightBar: styled.div`
-		margin-top: 20px;
+		margin-top: 10px;
 		width: 100%;
 		order: 1;
 		@media (min-width: 1400px) {

@@ -1,4 +1,6 @@
 import axios from 'axios';
+
+/* Utils */
 import updateFeed from './updateFeed';
 
 const follow = (event, option, axiosConfig, posts, setPosts) => {

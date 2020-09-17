@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-
 import axios from 'axios';
 
+/* Styles */
 import S from '../Styles/AllFollows';
 
+/* Assets */
 import loader from '../assets/Loader.gif';
 
 const AllFollows = (props) => {

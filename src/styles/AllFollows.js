@@ -10,7 +10,7 @@ const S = {
 	`,
 
 	Wraper: styled.div`
-		margin-top: 20px;
+		margin-top: 10px;
 		width: 100%;
 	`,
 
