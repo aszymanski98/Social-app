@@ -1,5 +1,5 @@
 # Social-app
-This project is simple social app modelled on Twitter. It is based on Axios Rest API requests.
+This project is social app modelled on Twitter. It is based on Axios Rest API requests. Social app allows user to create account, read posts, like them, follow other people. App also displays recommended users to follow.
 
 ## Table of contents
 * [Demo](#demo)
@@ -10,16 +10,18 @@ This project is simple social app modelled on Twitter. It is based on Axios Rest
 * [Sources](#sources)
 
 ## Demo
-Working demo of project: https://aszymanski98.github.io/Social-app-ReactJS/
+Working demo of the project: https://aszymanski98.github.io/Social-app-ReactJS/
 
 ## Features
 * Fully responsive page on computers and mobile devices
+* Dark layout
 * Different versions for logged users and guests
 * Forms with validation
 * Adding posts
 * Liking posts
 * Following other users
 * Follow recommendations
+* List of all follows
 	
 ## Technologies
 Project is created with:
@@ -48,4 +50,5 @@ In case of using demo, password to every user is:
 
 ## Sources
 * [Flaticon](https://www.flaticon.com/) - all icons and svg files
+* [Google fonts](https://fonts.google.com/) - Kite One font
 * [Akademia 108](https://akademia108.pl/) - API and documentation
