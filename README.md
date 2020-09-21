@@ -1,5 +1,5 @@
 # Social-app
-Functionality of this project was modelled on Twitter. Based on Axios REST API requests. Social app allows user to create account, read posts, like them, follow other people. It also displays recommended users to follow.
+Functionality of this project was modelled on Twitter. Based on Axios REST API requests. Social app allows user to create account, add and remove posts, like them, follow other people. It also displays recommended users to follow.
 
 ## Table of contents
 * [Demo](#demo)
@@ -17,7 +17,8 @@ Working demo of the project: https://aszymanski98.github.io/Social-app-ReactJS/
 * Dark layout
 * Different versions for logged users and guests
 * Forms with validation
-* Adding posts
+* Login data stored in local storage
+* Adding and removing posts
 * Liking posts
 * Following other users
 * Follow recommendations
