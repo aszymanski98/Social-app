@@ -1,5 +1,5 @@
 # Social-app
-This project is social app modelled on Twitter. It is based on Axios Rest API requests. Social app allows user to create account, read posts, like them, follow other people. App also displays recommended users to follow.
+Functionality of this project was modelled on Twitter. Based on Axios REST API requests. Social app allows user to create account, read posts, like them, follow other people. It also displays recommended users to follow.
 
 ## Table of contents
 * [Demo](#demo)
