@@ -2,7 +2,7 @@
   "name": "social-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://aszymanski98.github.io/Social-app/",
+  "homepage": "https://aszymanski98.github.io/Social-app/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-regular-svg-icons": "^5.14.0",
