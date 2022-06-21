@@ -7,7 +7,7 @@ import { faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 
 /* Styles */
-import S from '../Styles/Likes';
+import S from '../styles/Likes';
 
 const Likes = (props) => {
 	const liking = (event, option) => {

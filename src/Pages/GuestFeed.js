@@ -11,7 +11,7 @@ import Likes from '../Components/Likes';
 import updateFeed from '../Utils/updateFeed';
 
 /* Styles */
-import S from '../Styles/Feeds';
+import S from '../styles/Feeds';
 
 const GuestFeed = (props) => {
 	JavascriptTimeAgo.addLocale(en);

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import deletePost from '../Utils/deletePost';
 
 /* Styles */
-import S from '../Styles/DeletePopup';
+import S from '../styles/DeletePopup';
 
 /* Assets */
 import yes from '../assets/yes.svg';

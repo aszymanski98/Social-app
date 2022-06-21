@@ -13,7 +13,7 @@ import GuestFeed from "./Pages/GuestFeed";
 import AllFollows from "./Pages/AllFollows";
 
 /* Styles */
-import S from "./Styles/App";
+import S from "./styles/App";
 
 class App extends Component {
 	constructor() {

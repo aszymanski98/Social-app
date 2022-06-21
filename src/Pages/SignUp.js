@@ -7,8 +7,8 @@ import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 /* Styles */
-import S from '../Styles/Forms';
-import '../Styles/inputs.css';
+import S from '../styles/Forms';
+import '../styles/inputs.css';
 
 const SignUp = () => {
   const { register, handleSubmit, errors, getValues } = useForm();

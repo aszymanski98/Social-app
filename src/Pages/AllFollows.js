@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 /* Styles */
-import S from '../Styles/AllFollows';
+import S from '../styles/AllFollows';
 
 /* Assets */
 import loader from '../assets/Loader.gif';

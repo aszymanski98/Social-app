@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 /* Styles */
-import Menu from '../Styles/Menu';
+import Menu from '../styles/Menu';
 
 const MainMenu = (props) => {
 	const [scrollClass, setScrollClass] = useState('scrolled-up');

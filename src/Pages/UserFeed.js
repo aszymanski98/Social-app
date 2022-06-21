@@ -18,7 +18,7 @@ import follow from '../Utils/follow';
 import updateFeed from '../Utils/updateFeed';
 
 /* Styles */
-import S from '../Styles/Feeds';
+import S from '../styles/Feeds';
 
 const UserFeed = (props) => {
 	JavascriptTimeAgo.addLocale(en);
