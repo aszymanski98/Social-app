@@ -10,7 +10,7 @@ Functionality of this project was modelled on Twitter. Based on Axios REST API r
 * [Sources](#sources)
 
 ## Demo
-Working demo of the project: https://aszymanski98.github.io/Social-app-ReactJS/
+Working demo of the project: https://aszymanski98.github.io/Social-app/
 
 ## Features
 * Fully responsive page on computers and mobile devices
