@@ -24,7 +24,7 @@ const MainMenu = (props) => {
 				<Menu.List>
 					<Menu.Element>
 						<Menu.Logo
-							to='/Social-app-ReactJS/'
+							to='/Social-app/'
 							onClick={() => {
 								props.hide();
 								props.updateUser();
@@ -36,7 +36,7 @@ const MainMenu = (props) => {
 
 					<Menu.Element>
 						<Menu.Link
-							to='/Social-app-ReactJS/'
+							to='/Social-app/'
 							onClick={() => {
 								props.hide();
 								props.updateUser();
@@ -47,11 +47,11 @@ const MainMenu = (props) => {
 					</Menu.Element>
 
 					<Menu.Element>
-						<Menu.Link to='/Social-app-ReactJS/login'>Log in</Menu.Link>
+						<Menu.Link to='/Social-app/login'>Log in</Menu.Link>
 					</Menu.Element>
 
 					<Menu.Element>
-						<Menu.Link to='/Social-app-ReactJS/signup'>Sign up</Menu.Link>
+						<Menu.Link to='/Social-app/signup'>Sign up</Menu.Link>
 					</Menu.Element>
 				</Menu.List>
 			</Menu.Nav>
@@ -60,19 +60,19 @@ const MainMenu = (props) => {
 		return (
 			<Menu.Nav className={scrollClass}>
 				<Menu.List>
-					<Menu.Logo to='/Social-app-ReactJS/'>Social-app</Menu.Logo>
+					<Menu.Logo to='/Social-app/'>Social-app</Menu.Logo>
 
 					<Menu.Element>
-						<Menu.Link to='/Social-app-ReactJS/'>Feed</Menu.Link>
+						<Menu.Link to='/Social-app/'>Feed</Menu.Link>
 					</Menu.Element>
 
 					<Menu.Element>
-						<Menu.Link to='/Social-app-ReactJS/allFollows'>All follows</Menu.Link>
+						<Menu.Link to='/Social-app/allFollows'>All follows</Menu.Link>
 					</Menu.Element>
 
 					<Menu.Element>
 						<Menu.Link
-							to='/Social-app-ReactJS/'
+							to='/Social-app/'
 							onClick={() => {
 								localStorage.user = null;
 								props.updateUser(false);

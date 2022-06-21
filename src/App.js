@@ -59,18 +59,18 @@ class App extends Component {
 				<S.App>
 					{this.state.userLoggedIn ? <MainMenu updateUser={this.updateUser} logged={true} /> : <MainMenu updateUser={this.updateUser} hide={this.hidePopup} logged={false} />}
 					<Switch>
-						<Route exact path="/Social-app-ReactJS/">
+						<Route exact path="/Social-app/">
 							{this.state.userLoggedIn ? <UserFeed /> : <GuestFeed />}
-							{this.state.loaded ? this.state.userLoggedIn ? <Redirect to="/Social-app-ReactJS/" /> : <Login popup={true} iconDisplay="block" hide={this.hidePopup} updateUser={this.updateUser} /> : null}
+							{this.state.loaded ? this.state.userLoggedIn ? <Redirect to="/Social-app/" /> : <Login popup={true} iconDisplay="block" hide={this.hidePopup} updateUser={this.updateUser} /> : null}
 						</Route>
 
-						<Route path="/Social-app-ReactJS/login">{this.state.userLoggedIn ? <Redirect to="/Social-app-ReactJS/" /> : <LoginPage updateUser={this.updateUser} />}</Route>
+						<Route path="/Social-app/login">{this.state.userLoggedIn ? <Redirect to="/Social-app/" /> : <LoginPage updateUser={this.updateUser} />}</Route>
 
-						<Route path="/Social-app-ReactJS/signup" component={SignUp} />
+						<Route path="/Social-app/signup" component={SignUp} />
 
-						<Route path="/Social-app-ReactJS/allFollows" component={AllFollows} />
+						<Route path="/Social-app/allFollows" component={AllFollows} />
 
-						<Redirect to="/Social-app-ReactJS/" />
+						<Redirect to="/Social-app/" />
 					</Switch>
 				</S.App>
 			</Router>
